@@ -1,0 +1,11 @@
+- Hello world
+- Landing page
+- Set up routing
+- Auth page
+- Redux schema
+- Database schema
+- Mock auth api
+- Main container
+- Protect routes
+- Add new workout
+- 
