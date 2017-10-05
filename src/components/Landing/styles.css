@@ -1,0 +1,8 @@
+.landingContainer {
+  composes: centeredContainer from 'sharedStyles/styles.css';
+  margin: 160px auto;
+}
+
+.heroText {
+  composes: subHeader from 'sharedStyles/styles.css';
+}
