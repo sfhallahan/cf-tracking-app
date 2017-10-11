@@ -1,6 +1,7 @@
 .authContainer {
   composes: centeredContainer from 'sharedStyles/styles.css';
-  margin-top: 180px;
+  position: relative;
+  margin-top: 100px;
 }
 
 .buttonContainer {
