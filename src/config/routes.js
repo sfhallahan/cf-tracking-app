@@ -1,9 +1,7 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import NavContainer from 'containers/Nav/NavContainer'
-import LandingContainer from 'containers/Landing/LandingContainer'
-import AuthContainer from 'containers/Auth/AuthContainer'
-import LogContainer from 'containers/Log/LogContainer'
+import { NavContainer, LandingContainer,
+        AuthContainer, LogContainer } from 'containers'
 import { ConnectedRouter as Router } from 'react-router-redux'
 
 export default function getRoutes(checkAuth, history) {

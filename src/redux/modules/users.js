@@ -54,8 +54,7 @@ export function fetchAndHandleAuthUser() {
   return function (dispatch) {
     dispatch(fetchingUser())
     const user = auth()
-      console.log(user)
-      dispatch(fetchingUserSuccess(user.info. uid, user))
+      dispatch(fetchingUserSuccess(user.info.uid, user))
       dispatch(authUser(user.info.uid))
     }
     //.catch((error) => dispatch(fetchingUserError(error)))
@@ -89,7 +88,7 @@ const initialState = {
   authedId: '',
 }
 
-export function users(state=initialState, action) {
+export default function users(state=initialState, action) {
   switch (action.type) {
     case AUTH_USER:
       return {

@@ -4,12 +4,12 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { routerReducer } from 'react-router-redux'
 import { createBrowserHistory } from 'history'
-import * as users from 'redux/modules/users'
+import * as reducers from 'redux/modules'
 import getRoutes from 'config/routes'
 
 
 const store = createStore(
-  combineReducers({...users, routing: routerReducer}), compose(
+  combineReducers({...reducers, routing: routerReducer}), compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f
 ))
@@ -31,7 +31,6 @@ const history = createBrowserHistory()
 
 
 export default function Root (props) {
-  console.log(history)
   return (
     <Provider store={store}>
       {getRoutes(checkAuth, history)}

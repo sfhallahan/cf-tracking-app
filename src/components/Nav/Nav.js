@@ -7,7 +7,6 @@ import { toolBar, navButtons } from './styles.css'
 Nav.propTypes = {
   isAuthed: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
-  router: PropTypes.object.isRequired,
 }
 
 export default function Nav (props) {
@@ -18,7 +17,7 @@ export default function Nav (props) {
           <div>
             <Link to='/'>
               <Typography type='title' color='inherit'>
-                {'Plane app'}
+                {'Workout app'}
               </Typography>
             </Link>
           </div>

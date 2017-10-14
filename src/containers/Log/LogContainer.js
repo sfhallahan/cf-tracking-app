@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from 'components/Sidebar/Sidebar'
-import Log from 'components/Log/Log'
+import { Log, Sidebar } from 'components'
+import { NewWorkoutContainer } from 'containers'
 import { contentContainer } from 'sharedStyles/styles.css'
 
 class LogContainer extends React.Component {
@@ -9,6 +9,7 @@ class LogContainer extends React.Component {
       <div className={contentContainer}>
         <Sidebar />
         <Log />
+        <NewWorkoutContainer />
       </div>
     )
   }

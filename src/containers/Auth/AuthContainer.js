@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Auth from 'components/Auth/Auth'
+import { Auth } from 'components'
 import * as userActionCreators from 'redux/modules/users'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

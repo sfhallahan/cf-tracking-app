@@ -1,4 +1,5 @@
-users: {
+{
+  users: {
   isFetching,
   error,
   isAuthed,
@@ -11,7 +12,19 @@ users: {
       avatar,
     }
   }
+},
+usersWorkouts {
+  userId,
+  [workoutId]: {
+    type,
+    date,
+    details: {
+      [ set ]: {
+        [movement]:
 
-
+    }
   }
+},
+newWorkoutModal: {
+  isOpen,
 }
