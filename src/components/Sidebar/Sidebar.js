@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Drawer, Divider, List, ListItem, Typography, Avatar } from 'material-ui'
+import { Drawer, Divider, List, ListItem, ListItemIcon, ListItemText,
+  Typography, Avatar } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
-import { drawerContainer, profileContainer, avatar } from './styles.css'
+import { FitnessCenter, Assessment, Settings } from 'material-ui-icons'
+import { drawerContainer, profileContainer, avatar, username, active } from './styles.css'
 
 function Sidebar (props) {
   return (
@@ -13,19 +15,29 @@ function Sidebar (props) {
         >
         <div className={drawerContainer}>
           <div className={profileContainer}>
-            <Avatar
-              src='sharedStyles/about-me-pic.jpg'
-              alt='SH'
-              className={avatar}
-            />
-            <Typography>{'Sean Hallahan'}</Typography>
-
+            <img src={`https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17202934_10154644410739317_7550417823644438655_n.jpg?oh=363deda206789ffab2742c6bc777f136&oe=5A878A9F`}
+            className={avatar} />
+            <h4 className={username}>{'SEAN HALLAHAN'}</h4>
           </div>
-          <Divider />
           <List>
-            <ListItem>{'Workout Log'}</ListItem>
-            <ListItem>{'PRs/Perscribed Weight'}</ListItem>
-            <ListItem>{'Settings'}</ListItem>
+            <ListItem button className={props.activeLink === 'workoutLog' ? active : null}>
+              <ListItemIcon>
+                <FitnessCenter />
+              </ListItemIcon>
+              <ListItemText primary='WORKOUT LOG' />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <Assessment />
+              </ListItemIcon>
+              <ListItemText primary={`PR's`} />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <Settings />
+              </ListItemIcon>
+              <ListItemText primary='SETTINGS' />
+            </ListItem>
           </List>
         </div>
         </Drawer>

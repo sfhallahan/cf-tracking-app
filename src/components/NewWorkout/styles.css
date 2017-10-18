@@ -8,15 +8,14 @@
 }
 
 .modalContainer {
-    width: 1000px;
 }
 
 .progressContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  margin: 0 10px;
+  justify-content: center;
+  padding: 14px 24px;
 }
 
 .progress {
@@ -24,11 +23,12 @@
 }
 
 .progressItem {
-  width: 170px;
+  width: 180px;
+  padding: 0 5px;
   text-align: center;
 }
 
-.formControlStyle {
+.selectStyle {
   min-width: 120px;
 }
 
@@ -46,4 +46,18 @@
 
 .titleText {
   width: 300px;
+}
+
+.workoutList {
+  height: 325px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.workoutListContainer: {
+  margin-top: 10px;
+}
+
+.activeStep {
+  font-weight: bold;
 }

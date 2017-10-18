@@ -7,7 +7,8 @@ class LogContainer extends React.Component {
   render() {
     return (
       <div className={contentContainer}>
-        <Sidebar />
+        <Sidebar
+          activeLink='workoutLog'/>
         <Log />
         <NewWorkoutContainer />
       </div>

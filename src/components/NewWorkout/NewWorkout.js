@@ -1,17 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { NewWorkoutPageOneContainer, NewWorkoutPageTwoContainer, NewWorkoutPageThreeContainer } from 'containers'
 import { Button, Dialog, DialogTitle, DialogContent, TextField, DialogActions,
-        FormControl, InputLabel, Select, MenuItem, Input } from 'material-ui'
+        FormControl, InputLabel, Select, MenuItem, Input, List, ListItem,
+        ListItemText } from 'material-ui'
 import AddIcon from 'material-ui-icons/Add';
-import { goals } from 'config/constants'
-import { newWorkoutBtn, formContainer, modalContainer,
-        progressContainer, progress, progressItem, formControlStyle } from './styles.css'
+import { goals, workoutStyles } from 'config/constants'
+import { newWorkoutBtn, formContainer, modalContainer, activeStep,
+        progressContainer, progress, progressItem, selectStyle, workoutList,
+      workoutListContainer, } from './styles.css'
 
+NewWorkoutProgress.propTypes = {
+  newWorkoutStepNumber: PropTypes.number.isRequired,
+}
+
+function NewWorkoutProgress({newWorkoutStepNumber}) {
+  return (
+    <div>
+      <span
+        className={progressItem, newWorkoutStepNumber === 1 ? activeStep : null}
+      >{'1 Workout Style'}</span>
+      <span className={progress}>{'----'}</span>
+      <span
+        className={progressItem, newWorkoutStepNumber === 2 ? activeStep : null}
+      >{'2 Workout Details'}</span>
+      <span className={progress}>{'----'}</span>
+      <span
+        className={progressItem, newWorkoutStepNumber === 3 ? activeStep : null}
+      >{'3 Log Results'}</span>
+    </div>
+  )
+}
 
 NewWorkout.propTypes = {
   openNewWorkoutModal: PropTypes.func.isRequired,
-  closeNewWorkoutModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  workoutGoal: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSelectWorkout: PropTypes.func.isRequired,
+  newWorkoutStepNumber: PropTypes.number.isRequired,
+  handleModalClose: PropTypes.func.isRequired,
 }
 
 export default function NewWorkout (props) {
@@ -32,39 +60,28 @@ export default function NewWorkout (props) {
         >
           <DialogTitle>{`Add New Workout`}</DialogTitle>
           <div>
-          <div className={progressContainer}>
-            <span className={progressItem}>{'1 Workout Style'}</span>
-            <span className={progress}>{'----'}</span>
-            <span className={progressItem}>{'2 Workout Details'}</span>
-            <span className={progress}>{'----'}</span>
-            <span className={progressItem}>{'3 Log Results'}</span>
-          </div>
-          <DialogContent className={formContainer}>
-          <FormControl>
-            <InputLabel htmlFor="workoutGoal">Workout goal</InputLabel>
-            <Select
-              className={formControlStyle}
-              value={""}
-              onChange={(e) => console.log(e.target.value)}
-              input={<Input id="workoutGoal" />}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {goals.map((goal) => <MenuItem key={goal} value={goal}>{goal}</MenuItem>)}
-            </Select>
-          </FormControl>
-            <TextField
-              id="titleText"
-              label="Or..."
-              margin="normal"
-              multiline
-              rows="2"
-            />
-          </DialogContent>
+            <div className={progressContainer}>
+              <NewWorkoutProgress newWorkoutStepNumber={props.newWorkoutStepNumber} />
+            </div>
+            <DialogContent>
+              {props.newWorkoutStepNumber === 1
+                ? <NewWorkoutPageOneContainer
+                    workoutGoal={props.workoutGoal}
+                    handleChange={props.handleChange}
+                    handleSelectWorkout={props.handleSelectWorkout}
+                  />
+                : null}
+              {props.newWorkoutStepNumber === 2
+                ? <NewWorkoutPageTwoContainer
+                    workoutGoal={props.workoutGoal}
+                    handleChange={props.handleChange}
+                  />
+                : null}
+              {props.newWorkoutStepNumber === 3 ? <NewWorkoutPageThreeContainer /> : null}
+            </DialogContent>
           </div>
           <DialogActions>
-            <Button onClick={props.closeNewWorkoutModal} color="primary">
+            <Button onClick={props.handleModalClose} color="primary">
               Cancel
             </Button>
           </DialogActions>
