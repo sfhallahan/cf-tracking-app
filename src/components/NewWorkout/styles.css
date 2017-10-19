@@ -61,3 +61,17 @@
 .activeStep {
   font-weight: bold;
 }
+
+.movementContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageTwoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}

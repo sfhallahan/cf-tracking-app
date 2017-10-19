@@ -13,14 +13,23 @@
     }
   }
 },
-usersWorkouts {
-  userId,
+workouts {
   [workoutId]: {
+    userId,
     type,
     date,
     details: {
-      [ set ]: {
-        [movement]:
+      [groupingId]: {
+        type: (set, round, buy-in, etc)
+        [movement]: {
+          name:
+          rxReps
+          rxWeight:
+          rxWeightUnit:
+          scaledWeight:
+          scaledWeightUnit:
+
+        }
 
     }
   }
