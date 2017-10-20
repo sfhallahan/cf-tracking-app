@@ -7,15 +7,77 @@
   position: fixed;
 }
 
-.modalContainer {
+.dialogTitleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialogContentContainer {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-top: 24px;
+}
+
+.dialogActionsContainer {
+
 }
 
 .progressContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: 14px 24px;
+  justify-content: space-around;
+  flex: 1 1 auto;
+  padding: 0 72px 24px 72px;
+}
+
+.step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stepNumber {
+  height: 24px;
+  width: 24px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.38);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: 200;
+  margin-right: 8px;
+
+}
+
+div.activeStepNumber {
+  background-color: #3f51b5;
+}
+
+.stepText {
+  font-weight: 400;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+div.activeStepText {
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+}
+
+.divider {
+  width: 150px;
+  max-width: 25%;
+  flex-shrink: 1;
+  border-bottom: 1px solid black;
+  border-color: rgba(0, 0, 0, 0.24);
+  margin: 5px
 }
 
 .progress {
@@ -49,29 +111,20 @@
 }
 
 .workoutList {
-  height: 325px;
+  height: 300px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
 .workoutListContainer: {
   margin-top: 10px;
+  flex: 1 1 auto;
 }
 
-.activeStep {
-  font-weight: bold;
-}
 
 .movementContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
-
-.pageTwoContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
 }

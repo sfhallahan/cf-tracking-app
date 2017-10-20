@@ -5,7 +5,7 @@ import { Button, Dialog, DialogTitle, DialogContent, TextField, DialogActions,
         FormControl, InputLabel, Select, MenuItem, Input, List, ListItem,
         ListItemText } from 'material-ui'
 import AddIcon from 'material-ui-icons/Add';
-import { newWorkoutBtn, formContainer, modalContainer, activeStep,
+import { newWorkoutBtn, dialogContentContainer, modalContainer, activeStep,
         progressContainer, progress, progressItem, selectStyle, workoutList,
       workoutListContainer, } from './styles.css'
 
@@ -18,8 +18,8 @@ NewWorkoutPageOne.propTypes = {
 
 export default function NewWorkoutPageOne (props) {
   return (
-    <div className={formContainer}>
-      <FormControl fullWidth={false}>
+    <div className={dialogContentContainer}>
+      <FormControl fullWidth={true}>
         <InputLabel htmlFor="workoutGoal">Workout goal</InputLabel>
         <Select
           className={selectStyle}

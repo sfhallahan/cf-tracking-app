@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TextField, Typography, Button } from 'material-ui'
-import { movementContainer, pageTwoContainer } from './styles.css'
+import { movementContainer, dialogContentContainer } from './styles.css'
 
 Set.propTypes = {
   handleUpdateSets: PropTypes.func.isRequired,
@@ -44,7 +44,7 @@ NewWorkoutPageTwo.propTypes = {
 export default function NewWorkoutPageTwo (props) {
   console.log(props)
   return (
-    <div className={pageTwoContainer}>
+    <div className={dialogContentContainer}>
     <TextField
       id='movementName'
       label={'Movement'}

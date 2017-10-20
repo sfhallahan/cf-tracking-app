@@ -18,6 +18,8 @@ class NewWorkoutContainer extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSelectWorkout = this.handleSelectWorkout.bind(this)
     this.handleModalClose = this.handleModalClose.bind(this)
+    this.handleNext = this.handleNext.bind(this)
+    this.handleBack = this.handleBack.bind(this)
   }
 
   handleModalClose() {
@@ -40,9 +42,8 @@ class NewWorkoutContainer extends React.Component {
 
   handleSelectWorkout(workout) {
     this.setState({
-      newWorkoutStepNumber: 2,
       workoutStyle: workout.value,
-      workoutGoal: workout.goal,
+//      workoutGoal: workout.goal,
     })
   }
 
@@ -51,6 +52,17 @@ class NewWorkoutContainer extends React.Component {
       newWorkoutStepNumber: 1,
       workoutStyle: null,
       movements: {},
+    })
+  }
+
+  handleNext(currentPage) {
+    this.setState({
+      newWorkoutStepNumber: currentPage + 1,
+    })
+  }
+  handleBack(currentPage) {
+    this.setState({
+      newWorkoutStepNumber: currentPage - 1,
     })
   }
 
@@ -63,6 +75,8 @@ class NewWorkoutContainer extends React.Component {
         handleChange={this.handleChange}
         handleSelectWorkout={this.handleSelectWorkout}
         newWorkoutStepNumber={this.state.newWorkoutStepNumber}
+        handleNext={this.handleNext}
+        handleBack={this.handleBack}
         handleModalClose={this.handleModalClose}
 
       />
