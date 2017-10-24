@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { NewWorkout } from 'components'
+import { getDefaultDateValue } from 'helpers/utils'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as newWorkoutModalActionCreators from 'redux/modules/newWorkoutModal'
+import * as userWorkoutsActionCreators from 'redux/modules/userWorkouts'
 
 class NewWorkoutContainer extends React.Component {
   constructor(props) {
@@ -11,59 +13,94 @@ class NewWorkoutContainer extends React.Component {
 
     this.state = {
       workoutGoal: '',
-      newWorkoutStepNumber: 1,
-      workoutStyle: null,
-      movements: {},
+      stepNumber: 1,
+      workoutStyle: {},
+      details: {},
+      date: getDefaultDateValue(Date.now())
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSelectWorkout = this.handleSelectWorkout.bind(this)
     this.handleModalClose = this.handleModalClose.bind(this)
     this.handleNext = this.handleNext.bind(this)
     this.handleBack = this.handleBack.bind(this)
+    this.handlePage2Next = this.handlePage2Next.bind(this)
+    this.handleUpdateSet = this.handleUpdateSet.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleModalClose() {
     // clear form state in container
     this.setState({
       workoutGoal: '',
-      newWorkoutStepNumber: 1,
-      workoutStyle: null,
-      movements: {},
+      stepNumber: 1,
+      workoutStyle: {},
+      details: {},
+      date: getDefaultDateValue(Date.now())
     })
     // update modal state in redux
     this.props.closeNewWorkoutModal()
 
   }
 
-  handleChange(e, field) {
+  handleChange(field, e) {
     console.log(`{${field}: ${e.target.value}}`)
     this.setState({ [`${field}`]: e.target.value})
   }
 
   handleSelectWorkout(workout) {
     this.setState({
-      workoutStyle: workout.value,
+      workoutStyle: workout,
 //      workoutGoal: workout.goal,
     })
   }
 
   handlePage2Back() {
     this.setState({
-      newWorkoutStepNumber: 1,
-      workoutStyle: null,
-      movements: {},
+      stepNumber: 1,
+      workoutStyle: {},
+      workoutGoal: '',
+      details: {},
+      date: getDefaultDateValue(Date.now())
+    })
+  }
+
+  handlePage2Next(movement, numOfSets, sets) {
+    this.setState(() => {
+      return {
+        details: {
+          movement: movement,
+          numOfSets: numOfSets,
+          sets: sets,
+      }
+    }})
+  }
+
+  handleUpdateSet(field, e) {
+    const newDetails = {...this.state.details}
+    newDetails.sets[0][`${field}`] = e.target.value
+
+    this.setState(() =>{
+      return {
+        details: newDetails,
+      }
     })
   }
 
   handleNext(currentPage) {
     this.setState({
-      newWorkoutStepNumber: currentPage + 1,
+      stepNumber: currentPage + 1,
     })
   }
+
   handleBack(currentPage) {
     this.setState({
-      newWorkoutStepNumber: currentPage - 1,
+      stepNumber: currentPage - 1,
     })
+  }
+
+  handleSubmit() {
+    this.props.handleAddNewWorkout(this.state.date, this.state.workoutStyle, this.state.details)
+      .then(() => this.handleModalClose())
   }
 
   render () {
@@ -72,13 +109,18 @@ class NewWorkoutContainer extends React.Component {
         openNewWorkoutModal={this.props.openNewWorkoutModal}
         isOpen={this.props.isOpen}
         workoutGoal={this.state.workoutGoal}
+        workoutStyle={this.state.workoutStyle}
         handleChange={this.handleChange}
         handleSelectWorkout={this.handleSelectWorkout}
-        newWorkoutStepNumber={this.state.newWorkoutStepNumber}
+        stepNumber={this.state.stepNumber}
         handleNext={this.handleNext}
         handleBack={this.handleBack}
         handleModalClose={this.handleModalClose}
-
+        handlePage2Next={this.handlePage2Next}
+        details={this.state.details}
+        handleUpdateSet={this.handleUpdateSet}
+        date={this.state.date}
+        handleSubmit={this.handleSubmit}
       />
     )
   }
@@ -88,6 +130,7 @@ NewWorkoutContainer.propTypes = {
   openNewWorkoutModal: PropTypes.func.isRequired,
   closeNewWorkoutModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  handleAddNewWorkout: PropTypes.func.isRequired,
 }
 
 function mapStateToProps({newWorkoutModal}) {
@@ -97,7 +140,10 @@ function mapStateToProps({newWorkoutModal}) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(newWorkoutModalActionCreators, dispatch)
+  return bindActionCreators({
+    ...newWorkoutModalActionCreators,
+    ...userWorkoutsActionCreators,
+  }, dispatch)
 }
 
 export default connect (

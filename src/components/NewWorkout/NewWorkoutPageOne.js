@@ -1,30 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { goals, workoutStyles } from 'config/constants'
-import { Button, Dialog, DialogTitle, DialogContent, TextField, DialogActions,
-        FormControl, InputLabel, Select, MenuItem, Input, List, ListItem,
-        ListItemText } from 'material-ui'
-import AddIcon from 'material-ui-icons/Add';
-import { newWorkoutBtn, dialogContentContainer, modalContainer, activeStep,
-        progressContainer, progress, progressItem, selectStyle, workoutList,
-      workoutListContainer, } from './styles.css'
+import { FormControl, InputLabel, Select, MenuItem, Input, List, ListItem,
+        ListItemText, ListItemSecondaryAction } from 'material-ui'
+import CheckCircle from 'material-ui-icons/CheckCircle'
+import * as styles from './styles.css'
 
 
 NewWorkoutPageOne.propTypes = {
   workoutGoal: PropTypes.string.isRequired,
+  workoutStyle: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSelectWorkout: PropTypes.func.isRequired,
 }
 
 export default function NewWorkoutPageOne (props) {
   return (
-    <div className={dialogContentContainer}>
+    <div className={styles.dialogContentContainer}>
       <FormControl fullWidth={true}>
-        <InputLabel htmlFor="workoutGoal">Workout goal</InputLabel>
+        <InputLabel htmlFor="workoutGoal">{'Filter by workout goal'}</InputLabel>
         <Select
-          className={selectStyle}
           value={props.workoutGoal}
-          onChange={(e) => props.handleChange(e, 'workoutGoal')}
+          onChange={(e) => props.handleChange('workoutGoal', e)}
           input={<Input id="workoutGoal" />}
         >
           <MenuItem value="">
@@ -34,8 +31,8 @@ export default function NewWorkoutPageOne (props) {
         </Select>
       </FormControl>
       <br />
-      <div className={workoutListContainer}>
-        <List dense disablePadding className={workoutList}>
+      <div className={styles.workoutListContainer}>
+        <List dense disablePadding={true} className={styles.workoutList}>
           {workoutStyles
               .filter((workout) => {
                 return props.workoutGoal === "" || workout.goal === props.workoutGoal
@@ -47,6 +44,11 @@ export default function NewWorkoutPageOne (props) {
                     primary={workout.title}
                     secondary={workout.description}
                     onClick={() => props.handleSelectWorkout(workout)} />
+              {workout.value === props.workoutStyle.value
+                ? <ListItemSecondaryAction>
+                    <CheckCircle className={styles.check}/>
+                  </ListItemSecondaryAction>
+              : null}
               </ListItem>
             </FormControl>
           ))}

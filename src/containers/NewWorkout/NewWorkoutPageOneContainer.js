@@ -6,8 +6,10 @@ class NewWorkoutPageOneContainer extends React.Component {
     return (
       <NewWorkoutPageOne
         workoutGoal={this.props.workoutGoal}
+        workoutStyle={this.props.workoutStyle}
         handleChange={this.props.handleChange}
         handleSelectWorkout={this.props.handleSelectWorkout} />
+
     )
   }
 }

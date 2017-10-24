@@ -13,24 +13,22 @@
     }
   }
 },
-workouts {
+userWorkouts {
+  isFetching,
+  error,
   [workoutId]: {
     userId,
-    type,
+    workoutStyle,
     date,
-    details: {
-      [groupingId]: {
-        type: (set, round, buy-in, etc)
-        [movement]: {
-          name:
-          rxReps
-          rxWeight:
-          rxWeightUnit:
-          scaledWeight:
-          scaledWeightUnit:
-
-        }
-
+    details: { // setting up for sets only for now
+      movementName,
+      numOfSets,
+      notes,
+      [setId]: {
+          rxReps,
+          rxWeight,
+          rxWeightUnit,
+      }
     }
   }
 },

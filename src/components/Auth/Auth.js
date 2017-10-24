@@ -14,7 +14,7 @@ Auth.PropTypes = {
 export default function Auth (props) {
   return (
     <div className={authContainer}>
-      <h2 className={subHeader}>{'Login with Facebook to Play!'}</h2>
+      <h2 className={subHeader}>{'Authenticate with Google or Facebook'}</h2>
         {props.isFetching === true
           ? <CircularProgress color="accent" />
           : <Button
@@ -22,7 +22,7 @@ export default function Auth (props) {
               color="accent"
               className={btn}
               onClick={props.handleAuth}
-            >{'Login with Facebook'}</Button>
+            >{'Google'}</Button>
         }
     </div>
   )

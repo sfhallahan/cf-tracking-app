@@ -15,14 +15,14 @@ const store = createStore(
 ))
 
 
-function checkAuth (nextState, replace) {
-  const isAuthed = store.getState().users.isAuthed
+function checkFetching () {
   const isFetching = store.getState().users.isFetching
-  if ( isFetching === true ) {
-    return
-  } else {
-    return isAuthed
-  }
+  return isFetching
+}
+
+function checkAuth () {
+  const isAuthed = store.getState().users.isAuthed
+  return isAuthed
 }
 
 
@@ -33,6 +33,6 @@ const history = createBrowserHistory()
 export default function Root (props) {
   return (
     <Provider store={store}>
-      {getRoutes(checkAuth, history)}
+      {getRoutes(checkAuth, history, checkFetching)}
     </Provider>
 )}

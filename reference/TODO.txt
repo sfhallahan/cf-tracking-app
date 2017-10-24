@@ -1,4 +1,0 @@
-- Add new workout
-  - Step 1 Select workout type
-  - Step 2 workout details
-  - Step 3

@@ -13,7 +13,9 @@ class AuthContainer extends React.Component {
         error={''}
         handleAuth={() => {
           this.props.fetchAndHandleAuthUser()
-          this.context.router.history.replace('/')}}
+          .then(this.context.router.history.replace('/'))
+          .catch((error) => console.log('error'))
+        }}
       />
     )
   }
