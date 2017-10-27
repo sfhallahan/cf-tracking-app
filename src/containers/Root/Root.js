@@ -6,7 +6,10 @@ import { routerReducer } from 'react-router-redux'
 import { createBrowserHistory } from 'history'
 import * as reducers from 'redux/modules'
 import getRoutes from 'config/routes'
+import { muiThemeObj } from 'config/appTheme'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
+const theme = createMuiTheme(muiThemeObj);
 
 const store = createStore(
   combineReducers({...reducers, routing: routerReducer}), compose(
@@ -32,7 +35,9 @@ const history = createBrowserHistory()
 
 export default function Root (props) {
   return (
-    <Provider store={store}>
-      {getRoutes(checkAuth, history, checkFetching)}
-    </Provider>
+    <MuiThemeProvider theme={theme}>
+      <Provider store={store}>
+        {getRoutes(checkAuth, history, checkFetching)}
+      </Provider>
+    </MuiThemeProvider>
 )}

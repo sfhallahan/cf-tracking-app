@@ -1,13 +1,13 @@
 import React from 'react'
-import { Log, Sidebar } from 'components'
-import { NewWorkoutContainer } from 'containers'
+import { Log } from 'components'
+import { NewWorkoutContainer, SidebarContainer } from 'containers'
 import { contentContainer } from 'sharedStyles/styles.css'
 
 class LogContainer extends React.Component {
   render() {
     return (
       <div className={contentContainer}>
-        <Sidebar />
+        <SidebarContainer activeLink='workoutLog' />
         <Log />
         <NewWorkoutContainer />
 

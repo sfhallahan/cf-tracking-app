@@ -1,0 +1,47 @@
+
+.titleContainer {
+  margin-bottom: 20px;
+
+}
+
+.detailsTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.detailsBody {
+
+}
+
+.setList {
+  margin: 0;
+  padding: 0 0 0 8px;
+
+}
+
+.set {
+  font-size: 12px;
+  font-weight: 300;
+  padding: 0 0 2px;
+}
+
+.result {
+  margin: 8px 0 0 8px;
+  font-size: 14px;
+  font-weight: 400;
+
+
+}
+.detailsFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 0;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}

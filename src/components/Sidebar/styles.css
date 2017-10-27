@@ -7,22 +7,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  flex: 1 1 auto ;
   height: 200px;
+  padding: 20px;
 }
 
 .avatar {
-  width: 75px;
+  width: 100px;
   border-radius: 50%;
   margin: 10px;
 }
 
 .username {
-  font-size: 15px;
-}
-
-.active {
-  border-left: solid;
-  border-color: #ff4081;
-  border-width: thick;
+  font-size: 18px;
+  font-weight: 400;
 }

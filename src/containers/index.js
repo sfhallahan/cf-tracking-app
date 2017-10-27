@@ -12,3 +12,4 @@ export { default as NewWorkoutPageThreeContainer } from './NewWorkout/NewWorkout
 export { default as PersonalRecordsContainer } from './PersonalRecords/PersonalRecordsContainer'
 export { default as LogoutContainer } from './Logout/LogoutContainer'
 export { default as SettingsContainer } from './Settings/SettingsContainer'
+export { default as SidebarContainer } from './Sidebar/SidebarContainer'

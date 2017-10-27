@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Drawer, List, ListItem, ListItemIcon, ListItemText } from 'material-ui'
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
 import { Link } from 'react-router-dom'
 import { FitnessCenter, Assessment, Settings } from 'material-ui-icons'
-import { drawerContainer, profileContainer, avatar, username, active } from './styles.css'
+import { drawerContainer, profileContainer, avatar, username } from './styles.css'
 
 function Sidebar (props) {
   return (
@@ -15,25 +15,38 @@ function Sidebar (props) {
         >
         <div className={drawerContainer}>
           <div className={profileContainer}>
-            <img alt={'sean hallahan'} src={`https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17202934_10154644410739317_7550417823644438655_n.jpg?oh=363deda206789ffab2742c6bc777f136&oe=5A878A9F`}
+            <img alt={props.userInfo.name} src={props.userInfo.avatar}
             className={avatar} />
-            <h4 className={username}>{'SEAN HALLAHAN'}</h4>
+            <h4 className={username}>{props.userInfo.name}</h4>
           </div>
+          <Divider />
           <List>
             <Link to='/workout-log'>
-              <ListItem button className={props.activeLink === 'workoutLog' ? active : null}>
+              <ListItem
+                  button
+                  classes={props.activeLink === 'workoutLog'
+                            ? { root: props.classes.activeLink }
+                            : null}>
                 <ListItemIcon><FitnessCenter /></ListItemIcon>
                 <ListItemText primary='WORKOUT LOG' />
               </ListItem>
             </Link>
             <Link to='/personal-records'>
-              <ListItem button>
+              <ListItem
+                  button
+                  classes={props.activeLink === 'personalRecords'
+                            ? { root: props.classes.activeLink }
+                            : null}>
                 <ListItemIcon><Assessment /></ListItemIcon>
                 <ListItemText primary={`PR's`} />
               </ListItem>
             </Link>
             <Link to='/settings'>
-              <ListItem button>
+              <ListItem
+                  button
+                  classes={props.activeLink === 'settings'
+                            ? { root: props.classes.activeLink }
+                            : null}>
                 <ListItemIcon><Settings /></ListItemIcon>
                 <ListItemText primary='SETTINGS' />
               </ListItem>
@@ -47,13 +60,21 @@ function Sidebar (props) {
 
 Sidebar.propTypes = {
   classes: PropTypes.object.isRequired,
+  activeLink: PropTypes.string.isRequired,
+  userInfo: PropTypes.object.isRequired,
 }
 
 const styles ={
   drawerPaper: {
     position: 'relative',
     width: 240,
+  },
+  activeLink: {
+    borderLeft: 'solid',
+    borderWidth: '10px;',
+    borderColor: '#ff4081',
   }
+
 }
 
 export default withStyles(styles)(Sidebar)

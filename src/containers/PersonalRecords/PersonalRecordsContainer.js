@@ -1,13 +1,13 @@
 import React from 'react'
 import { subHeader, contentContainer, centeredContainer } from 'sharedStyles/styles.css'
-import { Sidebar } from 'components'
+import { SidebarContainer } from 'containers'
 
 
-class PrContainer extends React.Component {
+class PersonalRecordsContainer extends React.Component {
   render () {
     return (
       <div className={contentContainer}>
-        <Sidebar />
+        <SidebarContainer activeLink='personalRecords'/>
         <div className={centeredContainer}>
           <h2 className={subHeader}>{'PRs and weight calcs coming soon!'}</h2>
         </div>
@@ -16,4 +16,4 @@ class PrContainer extends React.Component {
   }
 }
 
-export default PrContainer
+export default PersonalRecordsContainer
