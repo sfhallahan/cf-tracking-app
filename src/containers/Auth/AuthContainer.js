@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Auth from 'components/Auth/Auth'
+import { Auth } from 'components'
 import * as userActionCreators from 'redux/modules/users'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -13,7 +13,9 @@ class AuthContainer extends React.Component {
         error={''}
         handleAuth={() => {
           this.props.fetchAndHandleAuthUser()
-          this.context.router.history.replace('/')}}
+          .then(this.context.router.history.replace('/'))
+          .catch((error) => console.log('error'))
+        }}
       />
     )
   }

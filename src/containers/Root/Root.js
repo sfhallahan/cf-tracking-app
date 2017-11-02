@@ -4,25 +4,28 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { routerReducer } from 'react-router-redux'
 import { createBrowserHistory } from 'history'
-import * as users from 'redux/modules/users'
+import * as reducers from 'redux/modules'
 import getRoutes from 'config/routes'
+import { muiThemeObj } from 'config/appTheme'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
+const theme = createMuiTheme(muiThemeObj);
 
 const store = createStore(
-  combineReducers({...users, routing: routerReducer}), compose(
+  combineReducers({...reducers, routing: routerReducer}), compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f
 ))
 
 
-function checkAuth (nextState, replace) {
-  const isAuthed = store.getState().users.isAuthed
+function checkFetching () {
   const isFetching = store.getState().users.isFetching
-  if ( isFetching === true ) {
-    return
-  } else {
-    return isAuthed
-  }
+  return isFetching
+}
+
+function checkAuth () {
+  const isAuthed = store.getState().users.isAuthed
+  return isAuthed
 }
 
 
@@ -31,9 +34,10 @@ const history = createBrowserHistory()
 
 
 export default function Root (props) {
-  console.log(history)
   return (
-    <Provider store={store}>
-      {getRoutes(checkAuth, history)}
-    </Provider>
+    <MuiThemeProvider theme={theme}>
+      <Provider store={store}>
+        {getRoutes(checkAuth, history, checkFetching)}
+      </Provider>
+    </MuiThemeProvider>
 )}

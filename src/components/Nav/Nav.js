@@ -7,7 +7,6 @@ import { toolBar, navButtons } from './styles.css'
 Nav.propTypes = {
   isAuthed: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
-  router: PropTypes.object.isRequired,
 }
 
 export default function Nav (props) {
@@ -18,14 +17,14 @@ export default function Nav (props) {
           <div>
             <Link to='/'>
               <Typography type='title' color='inherit'>
-                {'Plane app'}
+                {'CrossFit Tracking'}
               </Typography>
             </Link>
           </div>
           <div className={navButtons}>
             {props.isAuthed === true
               ? <Link to='/logout'>
-                  <Button color="contrast" onClick={() => props.handleLogout}>Logout</Button>
+                  <Button color="contrast" onClick={() => props.handleLogout()}>Logout</Button>
                 </Link>
               : <Link to='/login'>
                   <Button color="contrast">Login</Button>

@@ -1,4 +1,5 @@
-import { auth } from 'helpers/auth'
+import auth, { logout, saveUser } from 'helpers/auth'
+import { formatUserInfo } from 'helpers/utils'
 
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
@@ -7,7 +8,8 @@ const REMOVE_FETCHING_USER = 'REMOVE_FETCHING_USER'
 const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS'
 const FETCHING_USER_ERROR = 'FETCHING_USER_ERROR'
 
-function authUser(uid) {
+// Action creators
+export function authUser(uid) {
   return {
     type: AUTH_USER,
     uid,
@@ -26,7 +28,7 @@ function fetchingUser() {
   }
 }
 
-function removeFetchingUser() {
+export function removeFetchingUser() {
   return {
     type: REMOVE_FETCHING_USER,
   }
@@ -39,26 +41,42 @@ function fetchingUserError(error) {
   }
 }
 
-function fetchingUserSuccess(uid, user) {
+export function fetchingUserSuccess(uid, userInfo) {
   return {
     type: FETCHING_USER_SUCCESS,
     uid,
-    user,
+    userInfo,
     timestamp: Date.now(),
   }
 }
 
-// stubbed
 
+// Thunkzzz
 export function fetchAndHandleAuthUser() {
   return function (dispatch) {
     dispatch(fetchingUser())
-    const user = auth()
-      console.log(user)
-      dispatch(fetchingUserSuccess(user.info. uid, user))
-      dispatch(authUser(user.info.uid))
+    return auth()
+      .then(({user}) => {
+        const userData = user.providerData[0]
+        const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid)
+        return dispatch(fetchingUserSuccess(user.uid, userInfo))
+      })
+      .then(({userInfo}) => saveUser(userInfo))
+      .then((user) => dispatch(authUser(user.uid)))
+      .catch((error) => dispatch(fetchingUserError))
     }
-    //.catch((error) => dispatch(fetchingUserError(error)))
+  }
+
+  export function handleLogoutAndUnauth() {
+    return function(dispatch) {
+      dispatch(fetchingUser())
+      return logout()
+        .then(() => {
+          dispatch(unauthUser())
+          dispatch(removeFetchingUser())
+        })
+        .catch((e) => fetchingUserError(e))
+    }
   }
 
 
@@ -74,7 +92,7 @@ function user(state = initialUserState, action) {
     case FETCHING_USER_SUCCESS:
       return {
         ...state,
-        ...action.user,
+        info: action.userInfo,
         lastUpdated: action.timestamp,
       }
     default:
@@ -83,13 +101,13 @@ function user(state = initialUserState, action) {
 }
 
 const initialState = {
-  isFetching: false,
+  isFetching: true,
   error: '',
   isAuthed: false,
   authedId: '',
 }
 
-export function users(state=initialState, action) {
+export default function users(state=initialState, action) {
   switch (action.type) {
     case AUTH_USER:
       return {

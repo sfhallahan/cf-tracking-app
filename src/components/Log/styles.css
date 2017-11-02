@@ -1,3 +1,79 @@
 .logContainer {
-  composes: centeredContainer from 'sharedStyles/styles.css'
+  composes: centeredContainer from 'sharedStyles/styles.css';
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px 40px;
+  height: 900px;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.pageHeader {
+  font-size: 30px;
+  text-align: center;
+  line-height: 55px;
+  font-weight: 100;
+  margin: 0 60px 0 0;
+}
+
+.timelineContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 0 0 0;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+/* remove the scrollbar */
+.timelineContainer::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0 20px 20px 0;
+  flex: 0 0 auto;
+}
+
+.itemDate {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-size: 12px;
+  font-weight: 100;
+  width: 75px;
+  line-height: 36px;
+}
+
+.itemIcon {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+}
+
+.itemContent {
+  padding: 0 0 0 100px;
+}
+
+.timelineItem::before {
+  /* this is the vertical line */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 67px;
+  height: 100%;
+  width: 2px;
+  background: #d7e4ed;
 }

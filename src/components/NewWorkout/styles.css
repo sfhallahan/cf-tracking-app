@@ -1,0 +1,148 @@
+.newWorkoutBtn {
+  margin: 0px;
+  top: auto;
+  right: 40px;
+  bottom: 40px;
+  left: auto;
+  position: fixed;
+}
+
+.dialogTitleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialogContentContainer {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 24px;
+  min-height: 300px;
+}
+
+.dialogActionsContainer {
+
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1 1 auto;
+  padding: 0 24px;
+}
+
+.step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stepNumber {
+  height: 24px;
+  width: 24px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.38);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-right: 8px;
+
+}
+
+div.activeStepNumber {
+  background-color: #3f51b5;
+}
+
+.stepText {
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+div.completedStepText {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+div.activeStepText {
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
+}
+
+.divider {
+  width: 30px;
+  max-width: 25%;
+  flex-shrink: 1;
+  border-bottom: 1px solid black;
+  border-color: rgba(0, 0, 0, 0.24);
+  margin: 5px
+}
+.workoutListContainer {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.workoutList {
+  height: 250px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.workoutTitleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+}
+
+.header {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  padding: 0;
+}
+
+.subHeader {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.56);
+  border-width:
+}
+
+.movementContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.recordResultRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+.resultText {
+  padding: 0 16px 12px 0;
+  margin: 0;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.check {
+  color: #81C784;
+}
+
+.error {
+  composes: error from 'sharedStyles/styles.css'
+}

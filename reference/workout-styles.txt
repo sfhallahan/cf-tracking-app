@@ -1,0 +1,38 @@
+sets
+  movement
+    [setNumber]: {
+
+  }
+    reps
+
+for time
+  - Rounds
+    - General
+    - Same varying reps (21 -15 - 9)
+    - BuyIn/Bookout
+}
+
+
+- sets
+- RFT
+- RFT: Same varying reps (21 - 15 - 9)
+- RFT with bookends (buyIn/ cash out)
+- Each round for time
+- For time
+
+- EMOM (alternate movements for interval)
+- EMOM (Multiple movements/interval)
+
+- AMRAP
+- ANRAO Repeats
+- AMRAP with buy-in
+- AMRAP with max reps
+
+- AMReps
+- Tabata
+- FGB style (goal for reps, multiple stations/round, prescribed time at station, multiple round (rest between))
+- Death By Reps (starting reps, perform set, increase number of reps by X every X minutes)
+- Rounds for max reps
+
+
+1 - Choose a workout style ---- 2 Workout Details ---- 3 Log Result

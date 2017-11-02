@@ -1,5 +1,5 @@
 import React from 'react'
-import Landing from 'components/Landing/Landing'
+import { Landing } from 'components'
 
 class LandingContainer extends React.Component {
   render() {

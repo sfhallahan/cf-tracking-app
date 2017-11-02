@@ -1,0 +1,16 @@
+/users
+    /[uid]
+        name
+        uid
+        avatar
+/usersWorkouts
+  /[uid]
+    /[workoutId]
+      uid
+      date
+      reverseTimestamp
+      workoutStyle
+      /details
+        movement
+        notes
+        sets
