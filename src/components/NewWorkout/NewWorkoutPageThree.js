@@ -57,7 +57,7 @@ function XrmWorkout(props) {
         <TextField
           id="date"
           label="Date performed"
-          type="date"
+          type="datetime-local"
           defaultValue={props.date}
           onChange={(e) => props.handleChange('date', e)}
           InputLabelProps={{

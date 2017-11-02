@@ -16,7 +16,8 @@ class NewWorkoutContainer extends React.Component {
       stepNumber: 1,
       workoutStyle: {},
       details: {},
-      date: getDefaultDateValue(Date.now())
+      date: getDefaultDateValue(Date.now()),
+      error: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSelectWorkout = this.handleSelectWorkout.bind(this)
@@ -35,7 +36,8 @@ class NewWorkoutContainer extends React.Component {
       stepNumber: 1,
       workoutStyle: {},
       details: {},
-      date: getDefaultDateValue(Date.now())
+      date: getDefaultDateValue(Date.now()),
+      error: '',
     })
     // update modal state in redux
     this.props.closeNewWorkoutModal()
@@ -50,7 +52,7 @@ class NewWorkoutContainer extends React.Component {
   handleSelectWorkout(workout) {
     this.setState({
       workoutStyle: workout,
-//      workoutGoal: workout.goal,
+      error:'',
     })
   }
 
@@ -60,7 +62,8 @@ class NewWorkoutContainer extends React.Component {
       workoutStyle: {},
       workoutGoal: '',
       details: {},
-      date: getDefaultDateValue(Date.now())
+      date: getDefaultDateValue(Date.now()),
+      error: '',
     })
   }
 
@@ -87,8 +90,16 @@ class NewWorkoutContainer extends React.Component {
   }
 
   handleNext(currentPage) {
+    if(currentPage === 1 && Object.keys(this.state.workoutStyle).length === 0) {
+      this.setState({
+        stepNumber: 1,
+        error: 'Please select a workout type',
+      })
+      return
+    }
     this.setState({
       stepNumber: currentPage + 1,
+      error: '',
     })
   }
 
@@ -121,6 +132,7 @@ class NewWorkoutContainer extends React.Component {
         handleUpdateSet={this.handleUpdateSet}
         date={this.state.date}
         handleSubmit={this.handleSubmit}
+        error={this.state.error}
       />
     )
   }

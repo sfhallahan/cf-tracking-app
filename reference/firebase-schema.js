@@ -8,6 +8,7 @@
     /[workoutId]
       uid
       date
+      reverseTimestamp
       workoutStyle
       /details
         movement

@@ -7,3 +7,8 @@ export function saveNewWorkout(workout) {
     .set({...workout, workoutId})
     .then(() => ({...workout, workoutId}))
 }
+
+export function retrieveUserWorkouts(uid) {
+  return databaseRef.child(`userWorkouts/${uid}`).once('value')
+    .then((snapshot) => snapshot.val() || {})
+}

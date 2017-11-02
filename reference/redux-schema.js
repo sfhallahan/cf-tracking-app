@@ -16,22 +16,29 @@
 userWorkouts {
   isFetching,
   error,
-  [workoutId]: {
-    userId,
-    workoutStyle,
-    date,
-    details: { // setting up for sets only for now
-      movementName,
-      numOfSets,
-      notes,
-      [setId]: {
-          rxReps,
-          rxWeight,
-          rxWeightUnit,
+  workouts:{
+    [workoutId]: {
+      userId,
+      workoutStyle,
+      date,
+      details: { // setting up for sets only for now
+        movement,
+        numOfSets,
+        notes,
+        sets: {
+            setId,
+            rxReps,
+            rxWeight,
+            rxWeightUnit,
+          }
+        }
       }
     }
   }
 },
 newWorkoutModal: {
   isOpen,
+},
+listeners : {
+  [listenerId]: boolean
 }

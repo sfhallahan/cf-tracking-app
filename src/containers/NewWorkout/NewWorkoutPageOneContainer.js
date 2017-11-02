@@ -8,7 +8,8 @@ class NewWorkoutPageOneContainer extends React.Component {
         workoutGoal={this.props.workoutGoal}
         workoutStyle={this.props.workoutStyle}
         handleChange={this.props.handleChange}
-        handleSelectWorkout={this.props.handleSelectWorkout} />
+        handleSelectWorkout={this.props.handleSelectWorkout}
+        error={this.props.error} />
 
     )
   }

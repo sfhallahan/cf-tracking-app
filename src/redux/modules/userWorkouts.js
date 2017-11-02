@@ -1,5 +1,6 @@
+import { addListener } from 'redux/modules/listeners'
 import { formatUserWorkout } from 'helpers/utils'
-import { saveNewWorkout } from 'helpers/api'
+import { saveNewWorkout, retrieveUserWorkouts } from 'helpers/api'
 
 const FETCHING_USER_WORKOUTS = 'FETCHING_USER_WORKOUTS'
 // eslint-disable-next-line
@@ -29,6 +30,13 @@ function fetchingUserWorkoutsError(error) {
   }
 }
 
+function fetchingUserWorkoutsSuccess(workouts) {
+  return {
+    type: FETCHING_USER_WORKOUTS_SUCCESS,
+    workouts,
+  }
+}
+
 function addUserWorkout(workoutId, date, workoutStyle, details) {
   return {
     type: ADD_USER_WORKOUT,
@@ -39,11 +47,11 @@ function addUserWorkout(workoutId, date, workoutStyle, details) {
   }
 }
 
+
 // Thunks
 export function handleAddNewWorkout(date, workoutStyle, details) {
   return function(dispatch, getState) {
     const uid = getState().users.authedId
-    console.log(uid)
     dispatch(fetchingUserWorkouts())
     const workout = formatUserWorkout(uid, date, workoutStyle, details)
     return saveNewWorkout(workout)
@@ -52,6 +60,18 @@ export function handleAddNewWorkout(date, workoutStyle, details) {
       .catch((e) => dispatch(fetchingUserWorkoutsError(e)))
   }
 }
+
+export function fetchUserWorkouts() {
+  return function(dispatch, getState) {
+    const uid = getState().users.authedId
+    dispatch(fetchingUserWorkouts())
+    retrieveUserWorkouts(uid)
+      .then((workouts) => dispatch(fetchingUserWorkoutsSuccess(workouts)))
+      .catch((error) => dispatch(fetchingUserWorkoutsError(error)))
+
+  }
+}
+
 
 // Reducers
 const initialState={
@@ -78,13 +98,23 @@ export default function userWorkouts(state=initialState, action) {
         isFetching: false,
         error: action.error,
       }
+    case FETCHING_USER_WORKOUTS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        error: '',
+        workouts: action.workouts,
+      }
     case ADD_USER_WORKOUT:
       return {
         ...state,
-        [action.workoutId]: {
-          date: action.date,
-          workoutStyle: action.workoutStyle,
-          details: action.details,
+        workouts: {
+          [action.workoutId]: {
+            date: action.date,
+            workoutStyle: action.workoutStyle,
+            details: action.details,
+          },
+          ...state.workouts,
       }
     }
     default:

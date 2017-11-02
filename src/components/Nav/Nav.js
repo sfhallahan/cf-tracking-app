@@ -17,7 +17,7 @@ export default function Nav (props) {
           <div>
             <Link to='/'>
               <Typography type='title' color='inherit'>
-                {'Workout app'}
+                {'CrossFit Tracking'}
               </Typography>
             </Link>
           </div>

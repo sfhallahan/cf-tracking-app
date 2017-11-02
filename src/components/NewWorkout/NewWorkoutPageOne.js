@@ -12,6 +12,7 @@ NewWorkoutPageOne.propTypes = {
   workoutStyle: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSelectWorkout: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
 }
 
 export default function NewWorkoutPageOne (props) {
@@ -31,6 +32,7 @@ export default function NewWorkoutPageOne (props) {
         </Select>
       </FormControl>
       <br />
+      {props.error !== '' ? <span className={styles.error}>{props.error}</span> : null}
       <div className={styles.workoutListContainer}>
         <List dense disablePadding={true} className={styles.workoutList}>
           {workoutStyles

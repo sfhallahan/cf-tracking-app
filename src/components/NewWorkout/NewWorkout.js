@@ -22,6 +22,7 @@ NewWorkout.propTypes = {
   handleUpdateSet: PropTypes.func.isRequired,
   date: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
 }
 
 export default function NewWorkout (props) {
@@ -60,6 +61,7 @@ export default function NewWorkout (props) {
               handleChange={props.handleChange}
               handleSelectWorkout={props.handleSelectWorkout}
               workoutStyle={props.workoutStyle}
+              error={props.error}
             />
           : null}
         {props.stepNumber === 2
@@ -90,7 +92,8 @@ export default function NewWorkout (props) {
             {' Back '}
           </Button>
           {props.stepNumber !== 3
-            ? <Button onClick={() => props.handleNext(props.stepNumber)} color="primary">
+            ? <Button onClick={() => props.handleNext(props.stepNumber)}
+                      color="primary">
                 {' Next '}
                 <KeyboardArrowRight color='primary'/>
               </Button>

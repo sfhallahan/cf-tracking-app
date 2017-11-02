@@ -115,7 +115,7 @@ div.activeStepText {
   font-size: 12px;
   font-weight: 300;
   color: rgba(0, 0, 0, 0.56);
-  border-width: 
+  border-width:
 }
 
 .movementContainer {
@@ -141,4 +141,8 @@ div.activeStepText {
 
 .check {
   color: #81C784;
+}
+
+.error {
+  composes: error from 'sharedStyles/styles.css'
 }

@@ -23,10 +23,23 @@ export function formatUserInfo ( name, avatar, uid ) {
 }
 
 export function formatUserWorkout(uid, date, workoutStyle, details) {
+  console.log(Date.parse(date))
   return {
     uid,
-    date,
+    date: Date.parse(date),
+    reverseTimestamp: -Date.parse(date), // to retrieve reverse chrono from firebase
     workoutStyle,
     details,
   }
+}
+
+
+
+const months = ['Jan' , 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+export function formatTimelineDate(date) {
+  const dateObj = new Date(date)
+  return months[dateObj.getMonth()] + " " + dateObj.getDate()
+
 }
